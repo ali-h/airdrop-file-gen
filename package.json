@@ -1,0 +1,25 @@
+{
+  "name": "airdrop-file-gen",
+  "version": "1.0.0",
+  "description": "A script to generate Airdrop file according to the Staked/Delegations of an other Tokens/Tribes.",
+  "main": "filegen.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alihassanah/airdrop-file-gen.git"
+  },
+  "keywords": [
+    "js",
+    "steem",
+    "steem-engine",
+    "tokens",
+    "airdrop"
+  ],
+  "author": "Ali H",
+  "bugs": {
+    "url": "https://github.com/alihassanah/airdrop-file-gen/issues"
+  },
+  "homepage": "https://github.com/alihassanah/airdrop-file-gen#readme"
+}
