@@ -1,0 +1,11 @@
+{
+    "token" : {
+        "symbol" : ""
+    },
+    "limits" : {
+        "min_stake" : 0,
+        "max_stake" : 0
+    },
+    "enable_users_above_max" : false,
+    "reward_pool" : 0
+}
