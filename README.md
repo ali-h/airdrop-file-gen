@@ -20,6 +20,7 @@ To generate Airdrop file it has to be configured first, it is easy and simple:
     "enable_above_max_users" : false, // set it true to include the users above max range
                                       // it will not get the reward bigger, reward will be
                                       // calculated with the max_stake
+    "reward_pool" : 0 // total reward pool, reward for per user will be calculated with it
 }
 ```
 
