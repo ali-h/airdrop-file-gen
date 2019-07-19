@@ -2,9 +2,6 @@ const config = require('./config.json')
 const fs = require("fs")
 const axios = require('axios')
 
-steem.api.setOptions({
-    url: 'https://anyx.io'
-})
 function getAllStakers (callback) {
     var stakers = []
     var requestURL = "https://api.steem-engine.com/rpc/contracts"
