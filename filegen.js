@@ -28,16 +28,28 @@ function getAllStakers (callback) {
         for(var i = 0; i <= balances.length - 1; i++) {
             this_balance = balances[i]
             if (this_balance.stake > 0 || this_balance.delegationsOut > 0) {
+                var this_stake
                 if (typeof this_balance.delegationsOut == "undefined")
-                    parseFloat(this_balance.stake)
+                    this_stake = parseFloat(this_balance.stake)
                 else
                     this_stake = parseFloat(this_balance.delegationsOut) + parseFloat(this_balance.stake)
 
-                var this_user = {
-                    "username" : this_balance.account,
-                    "stake" : this_stake
+                if (this_stake >= config.limits.min_stake)
+                {
+                    var push = true
+                    var this_user = {
+                        "username" : this_balance.account,
+                        "stake" : this_stake
+                    }
+                    if (this_stake >= config.limits.max_stake)
+                        if (config.enable_users_above_max == true)
+                            this_user.stake = config.limits.max_stake
+                        else
+                            push = false
+                    
+                    if (push == true)
+                        stakers.push(this_user)
                 }
-                stakers.push(this_user)
             }
         }
         callback(stakers)
@@ -68,9 +80,9 @@ function getRewards (stakers) {
 
 getAllStakers(function(stakers) {
     var rewardList = getRewards(stakers)
-    var rewardsTXT = '\r';
+    var rewardsTXT = '';
     for (reward_no in rewardList) {
-        rewardsTXT = rewardsTXT + '\n' + rewardList[reward_no].username + ' ' + rewardList[reward_no].reward.toFixed(3)
+        rewardsTXT = rewardsTXT + rewardList[reward_no].username + ' ' + rewardList[reward_no].reward.toFixed(3) + '\n'
     }
     console.log(rewardsTXT)
 })
