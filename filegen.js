@@ -11,47 +11,60 @@ function getAllStakers (callback) {
         method: "find",
         params: {
             contract: "tokens",
-            indexes: "",
+            indexes: "",            
             offset: 0,
+            limit : 1000,
             query: {symbol: config.token.symbol},
             table: "balances"
         }
     }
-    axios.post(requestURL, request)
-    .then((res) => {
-        var balances = res.data.result
-        for(var i = 0; i <= balances.length - 1; i++) {
-            this_balance = balances[i]
-            if (this_balance.stake > 0 || this_balance.delegationsOut > 0) {
-                var this_stake
-                if (typeof this_balance.delegationsOut == "undefined")
-                    this_stake = parseFloat(this_balance.stake)
-                else
-                    this_stake = parseFloat(this_balance.delegationsOut) + parseFloat(this_balance.stake)
-
-                if (this_stake >= config.limits.min_stake)
-                {
-                    var push = true
-                    var this_user = {
-                        "username" : this_balance.account,
-                        "stake" : this_stake
-                    }
-                    if (this_stake >= config.limits.max_stake)
-                        if (config.enable_users_above_max == true)
-                            this_user.stake = config.limits.max_stake
-                        else
-                            push = false
-                    
-                    if (push == true)
-                        stakers.push(this_user)
-                }
+    var offsets = 0
+    function sendRequest(offset) {
+        request.params.offset = offset
+        axios.post(requestURL, request)
+        .then((res) => {
+            var balances = res.data.result
+            if (balances.length < 1) {
+                callback(stakers)
+                return
             }
-        }
-        callback(stakers)
-    })
-    .catch((error) => {
-        console.error(error)
-    })
+            else {
+                var total_users = balances.length
+                for(var i = 0; i <= total_users - 1; i++) {
+                    this_balance = balances[i]
+                    if (this_balance.stake > 0 || this_balance.delegationsOut > 0) {                
+                        var this_stake
+                        if (typeof this_balance.delegationsOut == "undefined")
+                            this_stake = parseFloat(this_balance.stake)
+                        else
+                            this_stake = parseFloat(this_balance.delegationsOut) + parseFloat(this_balance.stake)
+                        if (this_stake >= config.limits.min_stake)
+                        {
+                            var push = true
+                            var this_user = {
+                                "username" : this_balance.account,
+                                "stake" : this_stake
+                            }
+                            if (this_stake >= config.limits.max_stake && config.limits.max_stake != 0)
+                                if (config.enable_users_above_max == true)
+                                    this_user.stake = config.limits.max_stake
+                                else
+                                    push = false
+                            
+                            if (push == true)
+                                stakers.push(this_user)
+                        }
+                    }
+                }
+                offsets = offsets + total_users
+                sendRequest(offsets)
+            }         
+        })
+        .catch((error) => {
+            console.error(error)
+        })
+    }
+    sendRequest(0)
 }
 
 function getRewards (stakers) {
