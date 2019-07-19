@@ -28,7 +28,7 @@ To generate Airdrop file it has to be configured first, it is easy and simple:
 Now install Dependencies and Run it
 ```javascript
 $ npm install
-$ node airdrop.js
+$ node filegen.js
 ```
 It will generate a airdrop-File according to the configurations in the `files` Folder every time you run it.
 ***
