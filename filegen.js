@@ -1,5 +1,3 @@
-const steem = require('steem')
-const colors = require('colors')
 const config = require('./config.json')
 const fs = require("fs")
 const axios = require('axios')
@@ -80,9 +78,11 @@ function getRewards (stakers) {
 
 getAllStakers(function(stakers) {
     var rewardList = getRewards(stakers)
-    var rewardsTXT = '';
+    var rewardsTXT = '\b';
     for (reward_no in rewardList) {
         rewardsTXT = rewardsTXT + rewardList[reward_no].username + ' ' + rewardList[reward_no].reward.toFixed(3) + '\n'
     }
-    console.log(rewardsTXT)
+    fs.writeFile('./files/' + config.token.symbol + '-' + Math.floor(1000 + Math.random() * 9000) + '.airdrop', rewardsTXT, function (err) {
+        if (err) throw err;
+    })
 })
