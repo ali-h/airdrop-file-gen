@@ -75,7 +75,7 @@ function getRewards (stakers) {
 
 getAllStakers(function(stakers) {
     var rewardList = getRewards(stakers)
-    var rewardsTXT = '\b';
+    var rewardsTXT = '';
     for (reward_no in rewardList) {
         rewardsTXT = rewardsTXT + rewardList[reward_no].username + ' ' + rewardList[reward_no].reward.toFixed(3) + '\n'
     }
