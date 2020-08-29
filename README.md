@@ -3,6 +3,7 @@ A script to generate Airdrop file according to the Stake/Delegations of users fr
 
 It can be used with multiple options and limits. it generate a file for airdrop, that file can be executed with airdrop-tool Script.
 
+After generating the file you can use it airdrop tokens with this [script](https://github.com/ali-h/airdrop-tool)
 ***
 
 ## Configuration
