@@ -1,5 +1,5 @@
 # Airdrop-File-Gen
-A script to generate Airdrop file according to the Staked/Delegations of an other Tokens/Tribes.
+A script to generate Airdrop file according to the Stake/Delegations of users from another Token or Tribe.
 
 It can be used with multiple options and limits. it generate a file for airdrop, that file can be executed with airdrop-tool Script.
 
@@ -34,6 +34,6 @@ It will generate a airdrop-File according to the configurations in the `files` F
 ***
 
 ## Development
-Encounter any issue or Bugs, Please report them [Here](https://github.com/alihassanah/airdrop-tool/issues).
+Encounter any issue or Bugs, Please report them [Here](https://github.com/ali-h/airdrop-file-gen/issues).
 
 Bot Developed by @ali-h on hive, @Ali H#7057 on Discord.
