@@ -4,7 +4,7 @@ const axios = require('axios')
 
 function getAllStakers (callback) {
     var stakers = []
-    var requestURL = "https://api.steem-engine.com/rpc/contracts"
+    var requestURL = "https://api.hive-engine.com/rpc/contracts"
     var request = {
         id: 1,
         jsonrpc: "2.0",
