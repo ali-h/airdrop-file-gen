@@ -36,4 +36,4 @@ It will generate a airdrop-File according to the configurations in the `files` F
 ## Development
 Encounter any issue or Bugs, Please report them [Here](https://github.com/alihassanah/airdrop-tool/issues).
 
-Bot Developed by @ali=h on steemit, `A-jaX#9816` on Discord.
+Bot Developed by @ali-h on hive, @Ali H#7057 on Discord.
