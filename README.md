@@ -1,5 +1,5 @@
 # Airdrop-File-Gen
-A script to generate Airdrop file according to the Stake/Delegations of users from another Token or Tribe.
+A script to generate Airdrop file according to the Stake/Delegations of users from another Token or Tribe. (Hive-Engine)
 
 It can be used with multiple options and limits. it generate a file for airdrop, that file can be executed with airdrop-tool Script.
 
